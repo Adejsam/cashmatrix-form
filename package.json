@@ -1,0 +1,8 @@
+{
+  "name": "cashmatrix-form",
+  "version": "1.0.0",
+  "description": "Account Opening Form for Cashmatrix",
+  "scripts": {
+    "start": "npx serve ."
+  }
+}
