@@ -47,6 +47,11 @@
       </div>
 
       <div class="form-group">
+        <label class="label text-left">Email Address</label>
+        <input type="email" name="email" class="input" placeholder="Enter Email Address" required />
+      </div>
+
+      <div class="form-group">
         <label class="label text-left">Date of Birth</label>
         <input type="date" name="dob" class="input" placeholder="Enter Date of Birth" required />
       </div>
@@ -103,7 +108,7 @@
         if (input.type === "checkbox") {
           if (input.id === "agree" && !input.checked) valid = false;
         } else {
-          if (!input.value.trim()) valid = false;
+          if (!input.value.trim() || !input.checkValidity()) valid = false;
         }
       });
 
@@ -142,6 +147,7 @@
         bvn: form.bvn.value,
         nin: form.nin.value,
         phone: form.phone.value,
+        email: form.email.value,
         dob: form.dob.value,
       };
 
