@@ -75,7 +75,13 @@
 
         <div class="form-group">
           <label class="label text-left">Date of Birth</label>
-          <input type="date" name="dob" class="input" placeholder="Enter Date of Birth" required />
+          <input
+            type="date"
+            id="dob"
+            name="dob"
+            class="input"
+            placeholder="Enter Date of Birth"
+            required />
         </div>
 
         <div class="checkbox-group">
@@ -105,11 +111,22 @@
       const bvn = document.getElementById("bvn");
       const nin = document.getElementById("nin");
       const phone = document.getElementById("phone");
+      const dob = document.getElementById("dob");
       const successModal = document.getElementById("successModal");
       const closeModal = document.getElementById("closeModal");
 
-      const ACCESS_KEY = import.meta.env.EMAIL_SECRET;
+      const ACCESS_KEY = import.meta.env.VITE_EMAIL_SECRET;
       let isSubmitting = false;
+
+      // Restrict DOB to users who are at least 18 years old
+      const today = new Date();
+      const maxDate = new Date(
+        today.getFullYear() - 18,
+        today.getMonth(),
+        today.getDate()
+      );
+
+      dob.max = maxDate.toISOString().split("T")[0];
 
       function onlyNumbers(input, maxLength = null) {
         input.value = input.value.replace(/[^0-9]/g, "");
@@ -136,6 +153,15 @@
           valid = false;
         }
 
+        // Ensure user is at least 18 years old
+        if (dob.value) {
+          const selectedDate = new Date(dob.value);
+
+          if (selectedDate > maxDate) {
+            valid = false;
+          }
+        }
+
         if (isSubmitting) valid = false;
 
         submitBtn.disabled = !valid;
@@ -150,7 +176,18 @@
 
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
+
         if (isSubmitting) return;
+
+        // Final age validation before submit
+        if (dob.value) {
+          const selectedDate = new Date(dob.value);
+
+          if (selectedDate > maxDate) {
+            alert("You must be at least 18 years old.");
+            return;
+          }
+        }
 
         isSubmitting = true;
         submitBtn.textContent = "Sending...";
@@ -183,7 +220,6 @@
           const result = await response.json();
 
           if (response.status === 200) {
-            // Show Success Modal instead of alert
             successModal.classList.add("active");
             form.reset();
           } else {
@@ -202,10 +238,5 @@
         successModal.classList.remove("active");
       });
     </script>
-    <style>
-      .text-left {
-        text-align: left;
-      }
-    </style>
   </body>
 </html>
