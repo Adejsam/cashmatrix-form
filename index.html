@@ -1,192 +1,211 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Opening Form - Cashmatrix</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Account Opening Form - Cashmatrix</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
+  <body>
+    <div class="container text-center">
+      <div class="logo-container">
+        <img src="cashmatrix logo.png" alt="Logo" class="logo" />
+      </div>
 
-<body>
-  <div class="container text-center">
-    <div class="logo-container">
-      <img src="cashmatrix logo.png" alt="Logo" class="logo" />
-    </div>
+      <h2 class="heading">Personal Information</h2>
 
-    <h2 class="heading">Personal Information</h2>
-
-    <form id="accountForm">
-      <div class="form-group">
-        <label class="label text-left">Name</label>
-        <div class="input-grid">
-          <input name="surname" placeholder="Surname" class="input" required />
-          <input name="firstname" placeholder="First Name" class="input" required />
-          <input name="middlename" placeholder="Middle Name" class="input" />
+      <form id="accountForm">
+        <div class="form-group">
+          <label class="label text-left">Name</label>
+          <div class="input-grid">
+            <input name="surname" placeholder="Surname" class="input" required />
+            <input name="firstname" placeholder="First Name" class="input" required />
+            <input name="middlename" placeholder="Middle Name" class="input" />
+          </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label class="label text-left">Address</label>
-        <input name="address" placeholder="Enter your address" class="input" required />
-      </div>
+        <div class="form-group">
+          <label class="label text-left">Address</label>
+          <input name="address" placeholder="Enter your address" class="input" required />
+        </div>
 
-      <div class="form-group">
-        <label class="label text-left">BVN</label>
-        <input id="bvn" name="bvn" class="input" maxlength="11" placeholder="Enter BVN" required />
-      </div>
+        <div class="form-group">
+          <label class="label text-left">BVN</label>
+          <input
+            id="bvn"
+            name="bvn"
+            class="input"
+            maxlength="11"
+            placeholder="Enter BVN"
+            required />
+        </div>
 
-      <div class="form-group">
-        <label class="label text-left">NIN</label>
-        <input id="nin" name="nin" class="input" maxlength="11" placeholder="Enter NIN" required />
-      </div>
+        <div class="form-group">
+          <label class="label text-left">NIN</label>
+          <input
+            id="nin"
+            name="nin"
+            class="input"
+            maxlength="11"
+            placeholder="Enter NIN"
+            required />
+        </div>
 
-      <div class="form-group">
-        <label class="label text-left">Phone</label>
-        <input id="phone" name="phone" class="input" maxlength="11" placeholder="Enter Phone Number" required />
-      </div>
+        <div class="form-group">
+          <label class="label text-left">Phone</label>
+          <input
+            id="phone"
+            name="phone"
+            class="input"
+            maxlength="11"
+            placeholder="Enter Phone Number"
+            required />
+        </div>
 
-      <div class="form-group">
-        <label class="label text-left">Email Address</label>
-        <input type="email" name="email" class="input" placeholder="Enter Email Address" required />
-      </div>
+        <div class="form-group">
+          <label class="label text-left">Email Address</label>
+          <input
+            type="email"
+            name="email"
+            class="input"
+            placeholder="Enter Email Address"
+            required />
+        </div>
 
-      <div class="form-group">
-        <label class="label text-left">Date of Birth</label>
-        <input type="date" name="dob" class="input" placeholder="Enter Date of Birth" required />
-      </div>
+        <div class="form-group">
+          <label class="label text-left">Date of Birth</label>
+          <input type="date" name="dob" class="input" placeholder="Enter Date of Birth" required />
+        </div>
 
-      <div class="checkbox-group">
-        <input type="checkbox" id="agree" class="checkbox" required />
-        <span class="checkbox-text">
-          I hereby authorise that an account be opened for me on cashmatrix
-        </span>
-      </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="agree" class="checkbox" required />
+          <span class="checkbox-text">
+            I hereby authorise that an account be opened for me on cashmatrix
+          </span>
+        </div>
 
-      <button id="submitBtn" disabled class="submit-btn" type="submit">
-        Submit
-      </button>
-    </form>
-  </div>
-
-  <!-- Success Modal -->
-  <div id="successModal" class="modal-overlay">
-    <div class="modal-content">
-      <div class="success-icon">✓</div>
-      <h3 class="modal-title">Submission Successful!</h3>
-      <p class="modal-text">Your information has been received. We will contact you shortly.</p>
-      <button id="closeModal" class="modal-btn">OK</button>
+        <button id="submitBtn" disabled class="submit-btn" type="submit">Submit</button>
+      </form>
     </div>
-  </div>
 
-  <script type="module">
-    const form = document.getElementById("accountForm");
-    const submitBtn = document.getElementById("submitBtn");
-    const bvn = document.getElementById("bvn");
-    const nin = document.getElementById("nin");
-    const phone = document.getElementById("phone");
-    const successModal = document.getElementById("successModal");
-    const closeModal = document.getElementById("closeModal");
+    <!-- Success Modal -->
+    <div id="successModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="success-icon">✓</div>
+        <h3 class="modal-title">Submission Successful!</h3>
+        <p class="modal-text">Your information has been received. We will contact you shortly.</p>
+        <button id="closeModal" class="modal-btn">OK</button>
+      </div>
+    </div>
 
-    const ACCESS_KEY = import.meta.env.VITE_ACCESS_KEY;
-    let isSubmitting = false;
+    <script type="module">
+      const form = document.getElementById("accountForm");
+      const submitBtn = document.getElementById("submitBtn");
+      const bvn = document.getElementById("bvn");
+      const nin = document.getElementById("nin");
+      const phone = document.getElementById("phone");
+      const successModal = document.getElementById("successModal");
+      const closeModal = document.getElementById("closeModal");
 
-    function onlyNumbers(input, maxLength = null) {
-      input.value = input.value.replace(/[^0-9]/g, "");
-      if (maxLength) input.value = input.value.slice(0, maxLength);
-    }
+      const ACCESS_KEY = import.meta.env.EMAIL_SECRET;
+      let isSubmitting = false;
 
-    bvn.addEventListener("input", () => onlyNumbers(bvn, 11));
-    nin.addEventListener("input", () => onlyNumbers(nin, 11));
-    phone.addEventListener("input", () => onlyNumbers(phone));
+      function onlyNumbers(input, maxLength = null) {
+        input.value = input.value.replace(/[^0-9]/g, "");
+        if (maxLength) input.value = input.value.slice(0, maxLength);
+      }
 
-    function validateForm() {
-      let valid = true;
-      const inputs = form.querySelectorAll("input");
+      bvn.addEventListener("input", () => onlyNumbers(bvn, 11));
+      nin.addEventListener("input", () => onlyNumbers(nin, 11));
+      phone.addEventListener("input", () => onlyNumbers(phone));
 
-      inputs.forEach((input) => {
-        if (input.type === "checkbox") {
-          if (input.id === "agree" && !input.checked) valid = false;
+      function validateForm() {
+        let valid = true;
+        const inputs = form.querySelectorAll("input");
+
+        inputs.forEach((input) => {
+          if (input.type === "checkbox") {
+            if (input.id === "agree" && !input.checked) valid = false;
+          } else {
+            if (!input.value.trim() || !input.checkValidity()) valid = false;
+          }
+        });
+
+        if (bvn.value.length !== 11 || nin.value.length !== 11) {
+          valid = false;
+        }
+
+        if (isSubmitting) valid = false;
+
+        submitBtn.disabled = !valid;
+        if (valid) {
+          submitBtn.classList.add("active");
         } else {
-          if (!input.value.trim() || !input.checkValidity()) valid = false;
+          submitBtn.classList.remove("active");
+        }
+      }
+
+      form.addEventListener("input", validateForm);
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (isSubmitting) return;
+
+        isSubmitting = true;
+        submitBtn.textContent = "Sending...";
+        submitBtn.disabled = true;
+
+        const data = {
+          access_key: ACCESS_KEY,
+          subject: "New Account Opening",
+          from_name: form.firstname.value,
+          surname: form.surname.value,
+          firstname: form.firstname.value,
+          middlename: form.middlename.value,
+          address: form.address.value,
+          bvn: form.bvn.value,
+          nin: form.nin.value,
+          phone: form.phone.value,
+          email: form.email.value,
+          dob: form.dob.value,
+        };
+
+        try {
+          const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+
+          const result = await response.json();
+
+          if (response.status === 200) {
+            // Show Success Modal instead of alert
+            successModal.classList.add("active");
+            form.reset();
+          } else {
+            alert(result.message || "Submission failed");
+          }
+        } catch (error) {
+          alert("Network error or CORS issue");
+        } finally {
+          isSubmitting = false;
+          submitBtn.textContent = "Submit";
+          validateForm();
         }
       });
 
-      if (bvn.value.length !== 11 || nin.value.length !== 11) {
-        valid = false;
+      closeModal.addEventListener("click", () => {
+        successModal.classList.remove("active");
+      });
+    </script>
+    <style>
+      .text-left {
+        text-align: left;
       }
-
-      if (isSubmitting) valid = false;
-
-      submitBtn.disabled = !valid;
-      if (valid) {
-        submitBtn.classList.add("active");
-      } else {
-        submitBtn.classList.remove("active");
-      }
-    }
-
-    form.addEventListener("input", validateForm);
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      if (isSubmitting) return;
-
-      isSubmitting = true;
-      submitBtn.textContent = "Sending...";
-      submitBtn.disabled = true;
-
-      const data = {
-        access_key: ACCESS_KEY,
-        subject: "New Account Opening",
-        from_name: form.firstname.value,
-        surname: form.surname.value,
-        firstname: form.firstname.value,
-        middlename: form.middlename.value,
-        address: form.address.value,
-        bvn: form.bvn.value,
-        nin: form.nin.value,
-        phone: form.phone.value,
-        email: form.email.value,
-        dob: form.dob.value,
-      };
-
-      try {
-        const response = await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
-
-        const result = await response.json();
-
-        if (response.status === 200) {
-          // Show Success Modal instead of alert
-          successModal.classList.add("active");
-          form.reset();
-        } else {
-          alert(result.message || "Submission failed");
-        }
-      } catch (error) {
-        alert("Network error or CORS issue");
-      } finally {
-        isSubmitting = false;
-        submitBtn.textContent = "Submit";
-        validateForm();
-      }
-    });
-
-    closeModal.addEventListener("click", () => {
-      successModal.classList.remove("active");
-    });
-  </script>
-  <style>
-    .text-left {
-      text-align: left;
-    }
-  </style>
-</body>
-
+    </style>
+  </body>
 </html>
