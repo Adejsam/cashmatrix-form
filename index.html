@@ -82,6 +82,12 @@
             class="input"
             placeholder="Enter Date of Birth"
             required />
+          <small
+            id="dobError"
+            style="display: none; color: red; margin-top: 6px;"
+          >
+            You must be at least 18 years old.
+          </small>
         </div>
 
         <div class="checkbox-group">
@@ -112,6 +118,7 @@
       const nin = document.getElementById("nin");
       const phone = document.getElementById("phone");
       const dob = document.getElementById("dob");
+      const dobError = document.getElementById("dobError");
       const successModal = document.getElementById("successModal");
       const closeModal = document.getElementById("closeModal");
 
@@ -159,12 +166,18 @@
 
           if (selectedDate > maxDate) {
             valid = false;
+            dobError.style.display = "block";
+          } else {
+            dobError.style.display = "none";
           }
+        } else {
+          dobError.style.display = "none";
         }
 
         if (isSubmitting) valid = false;
 
         submitBtn.disabled = !valid;
+
         if (valid) {
           submitBtn.classList.add("active");
         } else {
@@ -184,7 +197,8 @@
           const selectedDate = new Date(dob.value);
 
           if (selectedDate > maxDate) {
-            alert("You must be at least 18 years old.");
+            dobError.style.display = "block";
+            dob.focus();
             return;
           }
         }
@@ -222,6 +236,7 @@
           if (response.status === 200) {
             successModal.classList.add("active");
             form.reset();
+            dobError.style.display = "none";
           } else {
             alert(result.message || "Submission failed");
           }

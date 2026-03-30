@@ -118,7 +118,7 @@ body {
 
 .checkbox-group {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
 }
@@ -234,4 +234,21 @@ body {
 
 .modal-btn:hover {
   background-color: var(--primary-hover);
+}
+
+.text-left {
+  text-align: left;
+}
+
+.checkbox {
+  accent-color: orange;
+}
+
+.checkbox:checked {
+  accent-color: orange;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
 }
